@@ -1,0 +1,24 @@
+Looking for PATH environment variable...
+PATH found: /home/matus/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin
+Trying path: /home/matus/.local/bin/ls
+Path is not executable: /home/matus/.local/bin/ls
+Trying path: /usr/local/sbin/ls
+Path is not executable: /usr/local/sbin/ls
+Trying path: /usr/local/bin/ls
+Path is not executable: /usr/local/bin/ls
+Trying path: /usr/sbin/ls
+Path is not executable: /usr/sbin/ls
+Trying path: /usr/bin/ls
+Command path found: /usr/bin/ls
+Trying path: /home/matus/.local/bin/wc
+Path is not executable: /home/matus/.local/bin/wc
+Trying path: /usr/local/sbin/wc
+Path is not executable: /usr/local/sbin/wc
+Trying path: /usr/local/bin/wc
+Path is not executable: /usr/local/bin/wc
+Trying path: /usr/sbin/wc
+Path is not executable: /usr/sbin/wc
+Trying path: /usr/bin/wc
+Command path found: /usr/bin/wc
+Executing cmd2: wc
+24

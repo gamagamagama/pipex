@@ -1,0 +1,53 @@
+<!-- Step 1: Set Up Argument Parsing
+Verify Argument Count: Start by checking that exactly four arguments are provided (file1, cmd1, cmd2, and file2). If not, print an error message and exit.
+
+Extract Arguments: Store file1, cmd1, cmd2, and file2 from the provided arguments for later use.
+
+Step 2: Split Commands into Executable and Arguments
+Create a Function to Split Commands: Write a helper function that takes a command string (e.g., "ls -l") and splits it into an array (e.g., {"ls", "-l", NULL}).
+
+Split Each Command: Use this helper function to split cmd1 and cmd2 so that each command can be run with its arguments. -->
+
+Step 3: Set Up the Pipe
+Create a Pipe: Use pipe() to create a pipe with two ends—one for reading and one for writing. This will allow the output of cmd1 to become the input for cmd2.
+Step 4: Fork the First Child Process (for cmd1)
+Fork the Process: Create a new process using fork(). This process will execute cmd1.
+
+In the First Child Process:
+
+Redirect Input: Open file1 and redirect it to the standard input (stdin) of the process, so cmd1 reads from file1.
+Redirect Output to the Pipe: Redirect the standard output (stdout) to the write end of the pipe, so the output of cmd1 goes into the pipe.
+Close Unused Pipe Ends: Close any pipe ends not used in this process.
+Execute cmd1: Use execve to run cmd1 with its arguments.
+Handle Errors: If anything goes wrong (e.g., file1 can't be opened), print an error message and exit the process.
+
+Step 5: Fork the Second Child Process (for cmd2)
+Fork Again: Create another child process for cmd2.
+
+In the Second Child Process:
+
+Redirect Input from the Pipe: Redirect the read end of the pipe to the standard input (stdin) of this process, so cmd2 reads the output of cmd1.
+Redirect Output to file2: Open file2 and redirect it to the standard output (stdout), so cmd2 writes its output to file2.
+Close Unused Pipe Ends: Close any pipe ends not used in this process.
+Execute cmd2: Use execve to run cmd2 with its arguments.
+Handle Errors: If file2 can’t be opened, print an error message and exit the process.
+
+Step 6: Close Pipe Ends in the Parent Process
+Close Both Ends of the Pipe: After forking both child processes, close the read and write ends of the pipe in the parent process. The parent no longer needs the pipe since the communication is now handled between the two child processes.
+Step 7: Wait for Both Child Processes to Finish
+Wait for Child Processes: Use waitpid() to wait for each child process (first cmd1, then cmd2) to finish execution. This ensures that the parent process doesn’t exit before both children complete.
+Step 8: Clean Up
+Free Allocated Memory: If you dynamically allocated memory for command arguments, free it to avoid memory leaks.
+Handle Errors Gracefully: Make sure any resources (e.g., files or pipes) are closed if an error occurs at any step, so the program can exit cleanly.
+Final Summary
+Your pipex should:
+
+Parse arguments.
+Split commands into an executable and arguments array.
+Set up a pipe.
+Fork the first child for cmd1, redirect input/output, and execute it.
+Fork the second child for cmd2, redirect input/output, and execute it.
+Close the pipe in the parent.
+Wait for both children to finish.
+Clean up memory and handle errors.
+This approach ensures that pipex will run cmd1, pipe its output to cmd2, and save the final result to file2, emulating the shell’s pipeline behavior.
