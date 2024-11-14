@@ -6,14 +6,11 @@
 /*   By: matus <matus@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 06:17:07 by matus             #+#    #+#             */
-/*   Updated: 2024/11/14 06:19:02 by matus            ###   ########.fr       */
+/*   Updated: 2024/11/14 06:33:00 by matus            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
-#include "libft/libft.h"
 #include "pipex.h"
-#include "printf/ft_printf.h"
 
 void	wait_child(t_pipex *pipex)
 {
@@ -25,6 +22,8 @@ void	wait_child(t_pipex *pipex)
 
 void	parent_process(t_pipex *pipex)
 {
+	if (create_pipes(pipex) == -1)
+		exit(EXIT_FAILURE);
 	create_child1(pipex);
 	create_child2(pipex);
 	wait_child(pipex);

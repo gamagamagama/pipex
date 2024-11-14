@@ -6,13 +6,11 @@
 /*   By: matus <matus@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 05:54:11 by matus             #+#    #+#             */
-/*   Updated: 2024/11/14 06:01:07 by matus            ###   ########.fr       */
+/*   Updated: 2024/11/14 06:27:13 by matus            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft/libft.h"
 #include "pipex.h"
-#include "printf/ft_printf.h"
 
 void	ft_free_array(char **array)
 {

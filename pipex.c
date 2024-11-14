@@ -6,13 +6,11 @@
 /*   By: matus <matus@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 21:59:00 by matus             #+#    #+#             */
-/*   Updated: 2024/11/14 06:20:29 by matus            ###   ########.fr       */
+/*   Updated: 2024/11/14 06:34:08 by matus            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft/libft.h"
 #include "pipex.h"
-#include "printf/ft_printf.h"
 
 void	child_process_cmd2(t_pipex *pipex)
 {
@@ -60,8 +58,6 @@ void	create_child2(t_pipex *pipex)
 {
 	pid_t	pid2;
 
-	if (create_pipes(pipex) == -1)
-		exit(EXIT_FAILURE);
 	pid2 = fork();
 	if (pid2 == -1)
 	{
@@ -80,8 +76,6 @@ void	create_child1(t_pipex *pipex)
 {
 	pid_t	pid1;
 
-	if (create_pipes(pipex) == -1)
-		exit(EXIT_FAILURE);
 	pid1 = fork();
 	if (pid1 == -1)
 	{
